@@ -29,7 +29,7 @@ public class UserController {
         String value = "嗨，欢迎您来到 from zero to expert.";
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if ("key3".equals(cookie.getName())) {
+                if ("visitor".equals(cookie.getName())) {
                     String originalValue = URLDecoder.decode(cookie.getValue(), "UTF-8");
                     value =  originalValue;
                     break;
@@ -37,8 +37,8 @@ public class UserController {
             }
         }
         String encodedValue = URLEncoder.encode("嗨，欢迎您再次来到 from zero to expert.", "UTF-8");
-        Cookie cookie = new Cookie("key3", encodedValue);
-        cookie.setMaxAge(4);
+        Cookie cookie = new Cookie("visitor", encodedValue);
+        cookie.setMaxAge(60*60*24);
         response.addCookie(cookie);
         return value;
     }
